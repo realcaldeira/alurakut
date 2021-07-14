@@ -32,6 +32,28 @@ function ProfileSidebar(propriedades) {
   );
 }
 
+function ProfileRelationsBox(propriedades) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        {propriedades.title} ({propriedades.items.length})
+      </h2>
+      <ul>
+        {/* {seguidores.map((itemAtual) => {
+        return (
+          <li key={itemAtual.id}>
+            <a href={`https://${itemAtual.}`}>
+              <img src={itemAtual.image} />
+              <span>{itemAtual.title}</span>
+            </a>
+          </li>
+        );
+      })} */}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  );
+}
+
 export default function Home() {
   const usuarioAleatorio = 'realcaldeira';
   const [comunidades, setComunidades] = React.useState([
@@ -41,19 +63,29 @@ export default function Home() {
       image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg',
     },
   ]);
-  // const comunidades = comunidades[0];
-  // const alteradorDeComunidades/setComunidades = comunidades[1];
 
-  console.log('Nosso teste');
-  // const comunidades = ['Alurakut'];
   const pessoasFavoritas = [
-    'juunegreiros',
-    'omariosouto',
-    'peas',
-    'rafaballerini',
-    'marcobrunodev',
-    'felipefialho',
+    'victorsantss',
+    'pedro-candido',
+    'eduardoAmroginski',
+    'alexeitelven',
+    'gabizinha12',
+    'rodrigorgtic',
   ];
+
+  const [seguidores, setSeguidores] = React.useState([]);
+
+  React.useEffect(function () {
+    const seguidores = fetch(
+      'https://api.github.com/users/realcaldeira/followers',
+    )
+      .then((respostaDoServidor) => {
+        return respostaDoServidor.json();
+      })
+      .then((respostaCompleta) => {
+        setSeguidores(respostaCompleta);
+      });
+  }, []);
 
   return (
     <>
@@ -113,6 +145,8 @@ export default function Home() {
           className="profileRelationsArea"
           style={{ gridArea: 'profileRelationsArea' }}
         >
+          <ProfileRelationsBox title="Seguidores" items={seguidores} />
+
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Comunidades ({comunidades.length})</h2>
             <ul>
@@ -128,6 +162,7 @@ export default function Home() {
               })}
             </ul>
           </ProfileRelationsBoxWrapper>
+
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">
               Pessoas da comunidade ({pessoasFavoritas.length})
