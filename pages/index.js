@@ -98,12 +98,10 @@ export default function Home() {
       .then((response) => response.json())
       .then((respostaCompleta) => {
         const comunidadesVindasDoDato = respostaCompleta.data.allCommunities;
-        console.log(comunidadesVindasDoDato);
+
         setComunidades(comunidadesVindasDoDato);
       });
   }, []);
-
-  console.log('seguidores antes do return', seguidores);
 
   return (
     <>
@@ -126,9 +124,6 @@ export default function Home() {
                 e.preventDefault();
                 const dadosDoForm = new FormData(e.target);
 
-                console.log('Campo: ', dadosDoForm.get('title'));
-                console.log('Campo: ', dadosDoForm.get('image'));
-
                 const comunidade = {
                   title: dadosDoForm.get('title'),
                   imageUrl: dadosDoForm.get('image'),
@@ -143,7 +138,7 @@ export default function Home() {
                   body: JSON.stringify(comunidade),
                 }).then(async (response) => {
                   const dados = await response.json();
-                  console.log(dados.registroCriado);
+
                   const comunidade = dados.registroCriado;
                   const comunidadesAtualizadas = [...comunidades, comunidade];
                   setComunidades(comunidadesAtualizadas);
