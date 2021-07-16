@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
 import nookies from 'nookies';
@@ -15,7 +15,7 @@ function Link({ href, children, ...props }) {
 }
 
 export function AlurakutMenu({ githubUser }) {
-  const [isMenuOpen, setMenuState] = React.useState(false);
+  const [isMenuOpen, setMenuState] = useState(false);
 
   function handleExit(event) {
     event.preventDefault();
@@ -200,9 +200,6 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
   );
 }
 
-// ================================================================================================================
-// AlurakutProfileSidebarMenuDefault
-// ================================================================================================================
 export function AlurakutProfileSidebarMenuDefault({ handleExit }) {
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper>
@@ -255,9 +252,6 @@ AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
   }
 `;
 
-// ================================================================================================================
-// OrkutNostalgicIconSet
-// ================================================================================================================
 export function OrkutNostalgicIconSet(props) {
   return (
     <OrkutNostalgicIconSet.List>
@@ -355,9 +349,6 @@ OrkutNostalgicIconSet.List = styled.ul`
   }
 `;
 
-// ================================================================================================================
-// Login Page
-// ================================================================================================================
 const AlurakutLoginScreen = css`
   :root {
     --backgroundPrimary: #d9e6f6;
@@ -494,9 +485,6 @@ const AlurakutLoginScreen = css`
   }
 `;
 
-// ================================================================================================================
-// Reset Styles
-// ================================================================================================================
 export const AlurakutStyles = css`
   *::-webkit-scrollbar {
     width: 8px;

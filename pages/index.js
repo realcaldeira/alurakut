@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import nookies from 'nookies';
 import jwt from 'jsonwebtoken';
 import MainGrid from '../src/components/MainGrid';
@@ -58,7 +58,7 @@ function ProfileRelationsBox(propriedades) {
 
 export default function Home(props) {
   const usuarioAleatorio = props.githubUser;
-  const [comunidades, setComunidades] = React.useState([]);
+  const [comunidades, setComunidades] = useState([]);
 
   const pessoasFavoritas = [
     'victorsantss',
@@ -68,10 +68,10 @@ export default function Home(props) {
     'gabizinha12',
     'rodrigorgtic',
   ];
-  const [seguidores, setSeguidores] = React.useState([]);
+  const [seguidores, setSeguidores] = useState([]);
 
-  React.useEffect(function () {
-    fetch('https://api.github.com/users/realcaldeira/followers')
+  useEffect(function () {
+    fetch(`https://api.github.com/users/${props.githubUser}/followers`)
       .then(function (respostaDoServidor) {
         return respostaDoServidor.json();
       })
