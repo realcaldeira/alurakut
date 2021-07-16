@@ -8,6 +8,8 @@ import {
 } from '../src/lib/AlurakutCommons';
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
+import Background from '../src/assets/background.jpg';
+
 function ProfileSidebar(propriedades) {
   return (
     <Box as="aside">
@@ -106,6 +108,7 @@ export default function Home() {
   return (
     <>
       <AlurakutMenu />
+
       <MainGrid>
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
           <ProfileSidebar githubUser={usuarioAleatorio} />
