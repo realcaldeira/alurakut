@@ -10,8 +10,6 @@ import {
 } from '../src/lib/AlurakutCommons';
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
-import Background from '../src/assets/background.jpg';
-
 function ProfileSidebar(propriedades) {
   return (
     <Box as="aside">
@@ -213,11 +211,11 @@ export default function Home(props) {
     </>
   );
 }
-export async function getServerSideProps(ctx) {
-  const cookies = nookies.get(ctx);
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context);
   const token = cookies.USER_TOKEN;
-  const decodedToken = jwt.decode(token);
-  const githubUser = decodedToken?.githubUser;
+  const decodificador = jwt.decode(token);
+  const githubUser = decodificador?.githubUser;
 
   if (!githubUser) {
     return {
