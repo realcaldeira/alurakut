@@ -59,6 +59,7 @@ function ProfileRelationsBox(propriedades) {
 export default function Home(props) {
   const usuarioAleatorio = props.githubUser;
   const [comunidades, setComunidades] = useState([]);
+  const [seguidores, setSeguidores] = useState([]);
 
   const pessoasFavoritas = [
     'victorsantss',
@@ -68,7 +69,6 @@ export default function Home(props) {
     'gabizinha12',
     'rodrigorgtic',
   ];
-  const [seguidores, setSeguidores] = useState([]);
 
   useEffect(function () {
     fetch(`https://api.github.com/users/${props.githubUser}/followers`)
